@@ -1,0 +1,104 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="main-panel bg-dark">
+    <div class="content bg-dark">
+        <div class="page-inner">
+        
+            <div class="mt-2 mb-4">
+                <h1 class="title1 text-light">Transaction History</h1>
+            </div>
+                  
+                
+            <div class="mb-5 row">
+                <!----	<div class="col text-center card p-4 bg-dark">---->
+                <div class="col card p-4 bg-dark  shadow-lg text-light">
+                    <form method="post">
+                        <input type="hidden" name="form_id" value="17048007018111">
+                        <input type="hidden" name="form_token" value="fa2c64eb8dffc8df9d5a5c5b55253c72">
+                        <input type="hidden" name="a" value="withdraw">
+                        <input type="hidden" name="action" value="preview">
+                        <input type="hidden" name="say" value="">
+
+                        <table cellspacing="0" cellpadding="2" border="0" class="table table-hover text-light">
+                            <tbody>
+                                <tr>
+                                    <td>Account Balance:</td>
+                                    <td>$<b>{{ total_successful_deposits }}</b></td>
+                                </tr>
+                                <!--
+                                <tr>
+                                <td>Pending Withdrawals: </td>
+                                <td>$<b></b></td>
+                                </tr>
+                                -->
+                            </tbody>
+                        </table>
+
+                        <table cellspacing="0" cellpadding="2" border="0" class="table table-hover text-light">
+                            <tbody>
+                                <tr>
+                                    <th></th>
+                                    <th>Investment Plan</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Profit</th>
+                                </tr>
+                                {% for deposit in deposits  %}
+                                    <tr>
+                                        <td></td>
+                                        <td>{{ deposit.plan }}</td>
+                                        <td><b>{{ deposit.deposit }}</b></td>
+
+                                        <td>
+                                            {% if deposit.status == 'pending' %}
+                                                <b style="color:red">{{ deposit.status }}</b>
+                                            {% else %}
+                                                <b style="color:green">{{ deposit.status }}</b>
+                                            {% endif %}
+                                           
+                                        </td>
+                                        <td>
+                                            {% if deposit.profit > 0 %}
+                                            {{ deposit.profit }}
+                                            {% else %}
+                                            <i>not set</i>
+                                            {% endif %}
+                                            
+                                        </td>
+                                    </tr>
+                                    
+                                {% endfor %}
+                                
+                            </tbody>
+                        </table>
+
+<br><br>
+</form>
+
+
+
+
+
+      
+            </div>
+        
+        
+        
+  </div>
+    <!--<footer class="footer bg-dark text-light">
+            <div class="container-fluid">
+                <div class="row copyright text-center text-align-center">
+                    <p>All Rights Reserved &copy; Blezos Trade 2022</p>
+                </div>
+            </div>
+        </footer>-->
+    </div>
+</div>
+</div>
+
+{% endblock content %}
+
+
