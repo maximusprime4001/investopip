@@ -223,7 +223,7 @@ def login_page(request):
 @login_required(login_url='/login')
 def logout_request(request):
     logout(request)
-    return redirect('login_page')
+    return redirect('login')
 
 
 def register_page(request):
